@@ -1,0 +1,121 @@
+package com.jack.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.io.Serializable;
+import java.util.Date;
+
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class SysDept implements Serializable {
+    private Integer id;
+
+    private String name;
+
+    private Integer parent_id;
+
+    private String level;
+
+    private Integer seq;
+
+    private String remark;
+
+    private String operator;
+
+    private Date operate_time;
+
+    private String operate_ip;
+
+    public SysDept(Integer id, String name, Integer parent_id, String level, Integer seq, String remark, String operator, Date operate_time, String operate_ip) {
+        this.id = id;
+        this.name = name;
+        this.parent_id = parent_id;
+        this.level = level;
+        this.seq = seq;
+        this.remark = remark;
+        this.operator = operator;
+        this.operate_time = operate_time;
+        this.operate_ip = operate_ip;
+    }
+
+    public SysDept() {
+        super();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public Integer getParent_id() {
+        return parent_id;
+    }
+
+    public void setParent_id(Integer parent_id) {
+        this.parent_id = parent_id;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level == null ? null : level.trim();
+    }
+
+    public Integer getSeq() {
+        return seq;
+    }
+
+    public void setSeq(Integer seq) {
+        this.seq = seq;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
+    }
+
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator == null ? null : operator.trim();
+    }
+
+    public Date getOperate_time() {
+        return operate_time;
+    }
+
+    public void setOperate_time(Date operate_time) {
+        this.operate_time = operate_time;
+    }
+
+    public String getOperate_ip() {
+        return operate_ip;
+    }
+
+    public void setOperate_ip(String operate_ip) {
+        this.operate_ip = operate_ip == null ? null : operate_ip.trim();
+    }
+}
