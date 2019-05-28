@@ -1,27 +1,31 @@
 package com.jack.model;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+@Table
 public class SysAclModule implements Serializable {
+    @Column
     private Integer id;
-
+    @Column
     private String name;
-
+    @Column
     private Integer parent_id;
-
+    @Column
     private String level;
-
+    @Column
     private Integer seq;
-
+    @Column
     private Integer status;
-
+    @Column
     private String remark;
-
+    @Column
     private String operator;
-
+    @Column
     private Date operate_time;
-
+    @Column
     private String operate_ip;
 
     public SysAclModule(Integer id, String name, Integer parent_id, String level, Integer seq, Integer status, String remark, String operator, Date operate_time, String operate_ip) {

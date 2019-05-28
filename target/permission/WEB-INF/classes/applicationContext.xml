@@ -60,4 +60,8 @@
         <!--配置数据库的类型-->
         <property name="dbType" value="mysql" />
     </bean>
+    <bean id="wall-config" class="com.alibaba.druid.wall.WallConfig">
+        <!-- 批量sql -->
+        <property name="multiStatementAllow" value="true"/>
+    </bean>
 </beans>

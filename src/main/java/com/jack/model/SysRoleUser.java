@@ -1,19 +1,28 @@
 package com.jack.model;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+@Table
 public class SysRoleUser implements Serializable {
+    @Column
     private Integer id;
 
+    @Column
     private Integer role_id;
 
+    @Column
     private Integer user_id;
 
+    @Column
     private String operator;
 
+    @Column
     private Date operate_time;
 
+    @Column
     private String operate_ip;
 
     public SysRoleUser(Integer id, Integer role_id, Integer user_id, String operator, Date operate_time, String operate_ip) {

@@ -5,30 +5,41 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
+@Table
 public class SysDept implements Serializable {
+    @Id
     private Integer id;
 
+    @Column
     private String name;
 
+    @Column
     private Integer parent_id;
 
+    @Column
     private String level;
 
+    @Column
     private Integer seq;
 
+    @Column
     private String remark;
 
+    @Column
     private String operator;
 
+    @Column
     private Date operate_time;
 
+    @Column
     private String operate_ip;
 
     public SysDept(Integer id, String name, Integer parent_id, String level, Integer seq, String remark, String operator, Date operate_time, String operate_ip) {
