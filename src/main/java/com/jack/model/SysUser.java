@@ -1,10 +1,15 @@
 package com.jack.model;
 
+import lombok.Builder;
+import lombok.ToString;
+
 import javax.persistence.Column;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+@Builder
+@ToString
 @Table
 public class SysUser implements Serializable {
     @Column
