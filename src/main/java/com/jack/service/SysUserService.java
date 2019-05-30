@@ -77,16 +77,23 @@ public class SysUserService {
 
     /**
      * 检查邮箱是否存在
-     * @param emaill
+     * @param maill
      * @param userId
      * @return
      */
-    public boolean checkEmailExists(String emaill, Integer userId) {
-        return false;
+    public boolean checkEmailExists(String maill, Integer userId) {
+        return sysUserMapper.countByMail(maill, userId) > 0;
     }
 
     public boolean checkTelephoneExists(String telephone, Integer userId) {
-        return false;
+        return sysUserMapper.countByTelephone(telephone, userId) > 0;
     }
+
+
+    public SysUser findByKeyword(String keyword) {
+        return sysUserMapper.findByKeyword(keyword);
+    }
+
+
 
 }

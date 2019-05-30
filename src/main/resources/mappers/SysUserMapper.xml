@@ -17,4 +17,38 @@
     </constructor>
   </resultMap>
 
+  <sql id="Base_Column_List" >
+    id, username, telephone, maill, password, dept_id, status, remark, operator, operate_time,
+    operate_ip
+  </sql>
+
+  <select id="findByKeyword" parameterType="string" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from sys_user
+    where telephone = #{keyword} or maill = #{keyword}
+  </select>
+
+  <select id="countByMail" parameterType="map" resultType="int">
+    select
+      count(1)
+    from
+      sys_user
+    where maill = #{mail}
+    <if test="id != null">
+      and id != #{id}
+    </if>
+  </select>
+
+  <select id="countByTelephone" parameterType="map" resultType="int">
+    select
+      count(1)
+    from
+      sys_user
+    where telephone = #{telephone}
+    <if test="id != null">
+      and id != #{id}
+    </if>
+  </select>
+
 </mapper>

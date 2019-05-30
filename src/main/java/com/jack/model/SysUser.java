@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.ToString;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.Date;
 @ToString
 @Table
 public class SysUser implements Serializable {
-    @Column
+    @Id
     private Integer id;
 
     @Column

@@ -1,13 +1,14 @@
 package com.jack.model;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
 @Table
 public class SysAclModule implements Serializable {
-    @Column
+    @Id
     private Integer id;
     @Column
     private String name;
