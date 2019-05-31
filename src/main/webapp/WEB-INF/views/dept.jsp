@@ -3,6 +3,7 @@
 <head>
     <title>部门管理</title>
     <jsp:include page="/common/backend_common.jsp" />
+    <jsp:include page="/common/page.jsp" />
 </head>
 <body class="no-skin" youdao="bind" style="background: white">
 <input id="gritter-light" checked="" type="checkbox" class="ace ace-switch ace-switch-5" />
@@ -165,19 +166,57 @@
     {{/deptList}}
 </ol>
 </script>
+
+<script id="userListTemplate" type="x-tmpl-mustache">
+{{#userList}}
+<tr role="row" class="user-name odd" data-id="{{id}}"><!--even -->
+    <td><a href="#" class="user-edit" data-id="{{id}}">{{username}}</a></td>
+    <td>{{showDeptName}}</td>
+    <td>{{mail}}</td>
+    <td>{{telephone}}</td>
+    <td>{{#bold}}{{showStatus}}{{/bold}}</td> <!-- 此处套用函数对status做特殊处理 -->
+    <td>
+        <div class="hidden-sm hidden-xs action-buttons">
+            <a class="green user-edit" href="#" data-id="{{id}}">
+                <i class="ace-icon fa fa-pencil bigger-100"></i>
+            </a>
+            <a class="red user-acl" href="#" data-id="{{id}}">
+                <i class="ace-icon fa fa-flag bigger-100"></i>
+            </a>
+        </div>
+    </td>
+</tr>
+{{/userList}}
+</script>
+
+
+
 <script type="text/javascript">
     $(function () {
         //存储树形部门列表
         var deptList;
         //缓存所有部门信息
         var deptMap = {};
+        //定义用户的map
+        var userMap = {};
+
         //选项的值
         var optionStr = "";
         //保存上一次的部门id
         var lastClickDeptId = -1;
 
+        //部门模板对象
         var deptListTemplate = $('#deptListTemplate').html();
         Mustache.parse(deptListTemplate);
+
+        //用户模板对象
+        var userListTemplate = $('#userListTemplate').html();
+        Mustache.parse(userListTemplate);
+
+
+
+
+
 
         loadDeptTree();
 
@@ -230,7 +269,8 @@
                 }
             });
 
-            //
+            //部门点击事件
+            //点击部门显示对应的员工信息
             $('.dept-name').click(function(e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -284,7 +324,6 @@
         //点击事件
         function handleDeptSelected(deptId) {
             if (lastClickDeptId != -1) {
-                // + ' .dd2-content: first'
                 var lastDept = $('#dept_'+lastClickDeptId+ " .dd2-content:first");
                 lastDept.removeClass('btn-yellow');
                 lastDept.removeClass('no-hover');
@@ -297,11 +336,74 @@
             loadUserList(deptId)
         }
 
-        //加载用户列表
+        //根据部门ID，加载用户列表
         function loadUserList(deptId) {
-            //TODO:
-            console.log('load userlist, deptId:' + deptId);
+            var pageSize = $('#pageSize').val();
+            var url = '/sys/user/list.json?deptId=' + deptId;
+            var pageNo = $('#userPage .pageNo').val() || 1;
+            $.ajax({
+               url: url,
+               data: {
+                   pageSize: pageSize,
+                   pageNo : pageNo
+               },
+               success: function (result) {
+                    renderUserListAndPage(result, url);
+                }
+            });
         }
+
+        //渲染用户列表同时渲染分页信息
+        function renderUserListAndPage(result, url) {
+            if (result.ret) {
+                if (result.data.total > 0) {
+                    var rendered = Mustache.render(userListTemplate, {
+                        userList: result.data.data,
+                        'showDeptName': function () {
+                            return deptMap[this.deptId].name;
+                        },
+                        'showStatus': function () {
+                            return this.status == 1 ? '有效' : (this.status == 0 ? '无效': '删除');
+                        },
+                        'bold': function () {
+                            return function(text, render) {
+                                var status = render(text);
+                                if (status == '有效') {
+                                    return '<span class="label label-sm label-success">有效</span>';
+                                } else if (status == '无效') {
+                                    return '<span class="label label-sm label-warning">无效</span>';
+                                } else {
+                                    return '<span class="label">删除</span>';
+                                }
+                            }
+                        }
+                    });
+
+                    $('#userList').html(rendered);
+                    bindUserClick();
+                    $.echo(result.data.data, function(i, user) {
+                        userMap[user.id] = user;
+                    });
+                } else {
+                    $('#userList').html('');
+                }
+
+                //渲染分页信息
+                var pageSize = $('#pageSize').val();
+                var pageNo = $('#userPage .pageNo').val() || 1;
+                renderPage(url, result.data.total, pageNo, pageSize, result.total>0?result.data.data.length : 0, 'userPage', renderUserListAndPage);
+            } else {
+                //异常返回
+                showMessage('获取部门用户列表', result.msg, false);
+            }
+        }
+
+        //绑定用户点击方法
+        function bindUserClick() {
+            //TODO:
+        }
+
+
 
         //部门列表新增按钮
         $('.dept-add').click(function() {
