@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="968b3ee7-782c-46b1-9cf9-87a3553d65f3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/dept.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/dept.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -36,31 +35,7 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jack/bean/PageQuery.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#394#395#0" expanded="true" />
-                <element signature="e#439#440#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jack/bean/PageResult.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -180,7 +155,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,77 +162,11 @@
               <item name="permission" type="b2602c69:ProjectViewProjectNode" />
               <item name="permission" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="permission" type="b2602c69:ProjectViewProjectNode" />
-              <item name="permission" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="permission" type="b2602c69:ProjectViewProjectNode" />
-              <item name="permission" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="permission" type="b2602c69:ProjectViewProjectNode" />
-              <item name="permission" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="permission" type="b2602c69:ProjectViewProjectNode" />
-              <item name="permission" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jack" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="permission" type="b2602c69:ProjectViewProjectNode" />
-              <item name="permission" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="jack" type="462c0819:PsiDirectoryNode" />
-              <item name="bean" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="permission" type="b2602c69:ProjectViewProjectNode" />
-              <item name="permission" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="permission" type="b2602c69:ProjectViewProjectNode" />
-              <item name="permission" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="permission" type="b2602c69:ProjectViewProjectNode" />
-              <item name="permission" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="permission" type="b2602c69:ProjectViewProjectNode" />
-              <item name="permission" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -407,6 +315,7 @@
       <workItem from="1559208673470" duration="29000" />
       <workItem from="1559208705506" duration="130000" />
       <workItem from="1559263070659" duration="4256000" />
+      <workItem from="1559294463782" duration="203000" />
     </task>
     <task id="LOCAL-00001" summary="todo: 部门模块">
       <created>1558967732723</created>
@@ -443,11 +352,18 @@
       <option name="project" value="LOCAL" />
       <updated>1559208764279</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="用户分页">
+      <created>1559294637623</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1559294637623</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40596000" />
+    <option name="totallyTimeSpent" value="40799000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -459,10 +375,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="897" y="23" width="1920" height="1015" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1920" height="1015" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945828" weight="0.33386752" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.2777778" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -544,7 +459,8 @@
     <MESSAGE value="部门列表页面布局" />
     <MESSAGE value="部门列表操作" />
     <MESSAGE value="新增用户接口开发" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增用户接口开发" />
+    <MESSAGE value="用户分页" />
+    <option name="LAST_COMMIT_MESSAGE" value="用户分页" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/SysDeptMapper.xml">
@@ -915,6 +831,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jack/bean/PageResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jack/bean/PageQuery.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -922,15 +845,8 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#394#395#0" expanded="true" />
-            <element signature="e#439#440#0" expanded="true" />
+            <element signature="e#440#441#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jack/bean/PageResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
         </state>
       </provider>
     </entry>
