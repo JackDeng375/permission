@@ -37,7 +37,5 @@ public class PasswordUtil {
 
     public static void main(String[] args) {
         System.out.println(randomPassword());
-        System.out.println(randomPassword());
-        System.out.println(randomPassword());
     }
 }

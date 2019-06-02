@@ -113,7 +113,7 @@
             <tr>
                 <td style="width: 80px;"><label for="parentId">所在部门</label></td>
                 <td>
-                    <select id="deptSelectId" name="deptId" data-placeholder="选择部门" style="width: 200px;"></select>
+                    <select id="deptSelectId" name="dept_id" data-placeholder="选择部门" style="width: 200px;"></select>
                 </td>
             </tr>
             <tr>
@@ -123,7 +123,7 @@
             </tr>
             <tr>
                 <td><label for="userMail">邮箱</label></td>
-                <td><input type="text" name="mail" id="userMail" value="" class="text ui-widget-content ui-corner-all"></td>
+                <td><input type="text" name="maill" id="userMail" value="" class="text ui-widget-content ui-corner-all"></td>
             </tr>
             <tr>
                 <td><label for="userTelephone">电话</label></td>
@@ -172,7 +172,7 @@
 <tr role="row" class="user-name odd" data-id="{{id}}"><!--even -->
     <td><a href="#" class="user-edit" data-id="{{id}}">{{username}}</a></td>
     <td>{{showDeptName}}</td>
-    <td>{{mail}}</td>
+    <td>{{maill}}</td>
     <td>{{telephone}}</td>
     <td>{{#bold}}{{showStatus}}{{/bold}}</td> <!-- 此处套用函数对status做特殊处理 -->
     <td>
@@ -212,11 +212,6 @@
         //用户模板对象
         var userListTemplate = $('#userListTemplate').html();
         Mustache.parse(userListTemplate);
-
-
-
-
-
 
         loadDeptTree();
 
@@ -339,7 +334,7 @@
         //根据部门ID，加载用户列表
         function loadUserList(deptId) {
             var pageSize = $('#pageSize').val();
-            var url = '/sys/user/list.json?deptId=' + deptId;
+            var url = '/sys/user/page.json?deptId=' + deptId;
             var pageNo = $('#userPage .pageNo').val() || 1;
             $.ajax({
                url: url,
@@ -360,7 +355,7 @@
                     var rendered = Mustache.render(userListTemplate, {
                         userList: result.data.data,
                         'showDeptName': function () {
-                            return deptMap[this.deptId].name;
+                            return deptMap[this.dept_id].name;
                         },
                         'showStatus': function () {
                             return this.status == 1 ? '有效' : (this.status == 0 ? '无效': '删除');
@@ -381,7 +376,7 @@
 
                     $('#userList').html(rendered);
                     bindUserClick();
-                    $.echo(result.data.data, function(i, user) {
+                    $.each(result.data.data, function(i, user) {
                         userMap[user.id] = user;
                     });
                 } else {
@@ -398,9 +393,78 @@
             }
         }
 
+
+        $('.user-add').click(function() {
+            $('#dialog-user-form').dialog({
+                model: true,
+                title: '新增用户',
+                open: function (event, ui) {
+                    $('.ui-dialog-titlebar-close', $(this).parent()).hide();
+                    optionStr = '';
+                    recursiveRenderDeptSelect(deptList, 1);
+                    $('#userForm')[0].reset();
+                    $('#deptSelectId').html(optionStr);
+                },
+                buttons: {
+                    '添加':function(e) {
+                        e.preventDefault();
+                        updateUser(true, function(data) {
+                            $('#dialog-user-form').dialog('close');
+                            loadUserList(lastClickDeptId);
+                        }, function(data) {
+                            showMessage('新增用户', data.msg, false);
+                        });
+                    },
+                    '取消':function() {
+                        $('#dialog-user-form').dialog('close');
+                    }
+                }
+            });
+        });
         //绑定用户点击方法
         function bindUserClick() {
-            //TODO:
+            $('.user-edit').click(function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var userId = $(this).attr('data-id');
+                $('#dialog-user-form').dialog({
+                    model: true,
+                    title: '编辑用户',
+                    open: function (event, ui) {
+                        $('.ui-dialog-titlebar-close', $(this).parent()).hide();
+                        optionStr = '';
+                        recursiveRenderDeptSelect(deptList, 1);
+                        $('#userForm')[0].reset();
+                        $('#deptSelectId').html(optionStr);
+                        var targetUser = userMap[userId];
+
+                        if (targetUser) {
+                            $('#deptSelectId').val(targetUser.dept_id);
+                            $('#userName').val(targetUser.username);
+                            $('#userMail').val(targetUser.maill);
+                            $('#userTelephone').val(targetUser.telephone);
+                            $('#userStatus').val(targetUser.status);
+                            $('#userRemark').val(targetUser.remark);
+                            $('#userId').val(targetUser.id);
+                        }
+                    },
+                    buttons: {
+                        '更新': function(e) {
+                            e.preventDefault();
+                            updateUser(false, function(data) {
+                                $('#dialog-user-form').dialog('close');
+                                //更新成功后加载用户列表
+                                loadUserList(lastClickDeptId);
+                            }, function(data) {
+                                showMessage('更新用户', data.msg, false);
+                            });
+                        },
+                        '取消':function() {
+                            $('#dialog-user-form').dialog('close');
+                        }
+                    }
+                });
+            });
         }
 
 
@@ -453,7 +517,29 @@
             }
         }
 
+        //新增用户或修改用户信息
+        function updateUser(isCreate, successCallback, failCallback) {
+            $.ajax({
+                url: isCreate ? '/sys/user/save.json' : '/sys/user/update.json',
+                data: $('#userForm').serializeArray(),
+                type: 'POST',
+                success: function (result) {
+                    if (result.ret) {
+                        loadDeptTree();
+                        if (successCallback) {
+                            successCallback(result);
+                        }
+                    } else {
+                        //失败
+                        if (failCallback) {
+                            failCallback(result);
+                        }
+                    }
+                }
+            });
+        }
 
+        //新增部门或修改部门
         function updateDept(isCreate, successCallback, failCallback) {
             $.ajax({
                 url: isCreate ? '/sys/dept/save.json' : '/sys/dept/update.json',

@@ -48,6 +48,7 @@
             from: from > total ? total : from,
             to: (from + currentSize - 1) > total ? total : (from+currentSize-1),
             total: total,
+            pageNo: pageNo,
             maxPageNo: maxPageNo,
             nextPageNo: pageNo >= maxPageNo ? maxPageNo : (pageNo+1),
             beforePageNo: pageNo==1 ? 1 : (pageNo - 1),

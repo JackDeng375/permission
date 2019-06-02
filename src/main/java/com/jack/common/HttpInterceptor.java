@@ -36,6 +36,7 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
         long start = (long) request.getAttribute(START_TIME);
         long end = System.currentTimeMillis();
         log.info("request finished, url:{}, cost:{}ms", url, end - start);
+        removeThreadLocalInfo();
     }
 
     //请求结束之后，任何情况下都会调用
@@ -45,8 +46,12 @@ public class HttpInterceptor extends HandlerInterceptorAdapter {
         long start = (long) request.getAttribute(START_TIME);
         long end = System.currentTimeMillis();
         log.info("request completed, url:{}, cost:{}ms", url, end - start);
+        removeThreadLocalInfo();
     }
 
+    public void removeThreadLocalInfo() {
+        RequestHolder.remove();
+    }
 
 
 

@@ -17,9 +17,9 @@
     </constructor>
   </resultMap>
 
+
   <sql id="Base_Column_List" >
-    id, username, telephone, maill, password, dept_id, status, remark, operator, operate_time,
-    operate_ip
+    id, username, telephone, maill, password, dept_id, status, remark, operator, operate_time,operate_ip
   </sql>
 
   <select id="findByKeyword" parameterType="string" resultMap="BaseResultMap">
@@ -50,5 +50,36 @@
       and id != #{id}
     </if>
   </select>
+
+
+  <select id="countByDeptId" parameterType="int" resultType="int">
+    select
+      count(1)
+    from sys_user
+    where dept_id = #{deptId}
+  </select>
+
+
+  <!--
+    where dept_id = #{deptId}
+    order by username asc
+    limit #{page.offset},#{page.pageSize}
+  -->
+
+  <!--选中父部门会将员工显示出来
+   譬如：
+   研发部->前端和后端
+   选中研发部会将后端和前端的员工一并显示出来
+  -->
+  <select id="getPageByDeptId" parameterType="map" resultMap="BaseResultMap">
+    select DISTINCT
+      u.id, u.username, u.telephone, u.maill, u.password, u.dept_id, u.status, u.remark, u.operator, u.operate_time,
+      u.operate_ip
+    FROM
+    sys_user u
+    left join sys_dept d on u.dept_id = d.id
+    WHERE d.parent_id = #{deptId} or u.dept_id = #{deptId};
+  </select>
+
 
 </mapper>

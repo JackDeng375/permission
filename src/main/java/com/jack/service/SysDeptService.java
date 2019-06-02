@@ -1,11 +1,13 @@
 package com.jack.service;
 
 import com.google.common.base.Preconditions;
+import com.jack.common.RequestHolder;
 import com.jack.dao.SysDeptMapper;
 import com.jack.exception.ParamException;
 import com.jack.model.SysDept;
 import com.jack.param.DeptParam;
 import com.jack.util.BeanValidator;
+import com.jack.util.IpUtil;
 import com.jack.util.LevelUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +32,8 @@ public class SysDeptService {
         SysDept dept = SysDept.builder().name(param.getName()).parent_id(param.getParentId())
                 .seq(param.getSeq()).remark(param.getRemark()).build();
         dept.setLevel(LevelUtil.calculateLevel(getLevel(param.getParentId()), param.getParentId()));
-        //TODO
-        dept.setOperator("system");
-        //TODO
-        dept.setOperate_ip("127.0.0.1");
+        dept.setOperator(RequestHolder.getCurrentUser().getUsername());
+        dept.setOperate_ip(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
         dept.setOperate_time(new Date());
 
         sysDeptMapper.insert(dept);
@@ -49,8 +49,8 @@ public class SysDeptService {
         SysDept after = SysDept.builder().id(param.getId()).name(param.getName()).parent_id(param.getParentId())
                 .seq(param.getSeq()).remark(param.getRemark()).build();
         after.setLevel(LevelUtil.calculateLevel(getLevel(param.getParentId()),param.getParentId()));
-        after.setOperator("system");
-        after.setOperate_ip("127.0.0.1");
+        after.setOperator(RequestHolder.getCurrentUser().getUsername());
+        after.setOperate_ip(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
         after.setOperate_time(new Date());
 
         updateWithChild(before, after);
