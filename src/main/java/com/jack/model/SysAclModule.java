@@ -1,11 +1,14 @@
 package com.jack.model;
 
+import lombok.Builder;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+@Builder
 @Table
 public class SysAclModule implements Serializable {
     @Id

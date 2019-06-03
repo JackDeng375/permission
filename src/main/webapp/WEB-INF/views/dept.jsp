@@ -213,6 +213,8 @@
         var userListTemplate = $('#userListTemplate').html();
         Mustache.parse(userListTemplate);
 
+
+        //调用部门树
         loadDeptTree();
 
         //加载部门树

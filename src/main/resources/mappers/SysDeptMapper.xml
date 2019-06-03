@@ -23,14 +23,6 @@
         where level like #{level} || '.%'
     </select>
 
-    <update id="batchUpdateLevel" parameterType="map">
-        <foreach collection="sysDeptList" item="sysDept" separator=";">
-            update sys_dept
-            set level = #{sysDept.level}
-            where id = #{sysDept.id}
-        </foreach>
-    </update>
-
     <select id="countByNameAndParentId" resultType="int" parameterType="map">
         select count(1)
         from sys_dept
@@ -42,5 +34,15 @@
             and id != #{id}
         </if>
     </select>
+
+    <update id="batchUpdateLevel" parameterType="map">
+        <foreach collection="sysDeptList" item="sysDept" separator=";">
+            update sys_dept
+            set level = #{sysDept.level}
+            where id = #{sysDept.id}
+        </foreach>
+    </update>
+
+
 
 </mapper>

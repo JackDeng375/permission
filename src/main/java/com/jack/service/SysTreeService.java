@@ -3,6 +3,7 @@ package com.jack.service;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
+import com.jack.dao.SysAclModuleMapper;
 import com.jack.dao.SysDeptMapper;
 import com.jack.dto.DeptLevelDto;
 import com.jack.model.SysDept;
@@ -20,6 +21,8 @@ public class SysTreeService {
 
     @Autowired
     private SysDeptMapper sysDeptMapper;
+    @Autowired
+    private SysAclModuleMapper sysAclModuleMapper;
 
     //部门树
     public List<DeptLevelDto> deptTree() {
