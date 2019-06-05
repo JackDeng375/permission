@@ -30,7 +30,7 @@
   <select id="countByNameAndParentId" resultType="int" parameterType="map">
     select count(1)
     from sys_acl_module
-    where name = #{name}
+    where name = #{aclModuleName}
     <if test="parentId != null ">
       and parent_id = #{parentId}
     </if>

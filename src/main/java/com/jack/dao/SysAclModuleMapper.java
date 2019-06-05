@@ -10,7 +10,7 @@ public interface SysAclModuleMapper extends Mapper<SysAclModule> {
 
     int countByNameAndParentId(@Param("parentId") Integer parentId,
                                    @Param("aclModuleName") String aclModuleName,
-                                   @Param("deptId") Integer deptId);
+                                   @Param("id") Integer id);
 
     List<SysAclModule> getChildAclModuleListByLevel(@Param("level") String level);
 }

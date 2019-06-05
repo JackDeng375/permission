@@ -3,6 +3,7 @@ package com.jack.controller;
 import com.jack.common.JsonData;
 import com.jack.param.AclModuleParam;
 import com.jack.service.SysAclModuleService;
+import com.jack.service.SysTreeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,10 @@ public class SysAclModuleController {
 
     @Autowired
     private SysAclModuleService sysAclModuleService;
+    @Autowired
+    private SysTreeService sysTreeService;
 
-    @RequestMapping("acl.page")
+    @RequestMapping("/acl.page")
     public ModelAndView page() {
         return new ModelAndView("acl");
     }
@@ -40,8 +43,6 @@ public class SysAclModuleController {
     @RequestMapping("/tree.json")
     @ResponseBody
     public JsonData tree() {
-        return JsonData.success();
+        return JsonData.success(sysTreeService.aclModuleTree());
     }
-
-
 }

@@ -40,7 +40,7 @@ public class SysAclModuleService {
         aclModule.setOperate_ip(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
         aclModule.setOperate_time(new Date());
 
-        sysAclModuleMapper.insertSelective(aclModule);
+        sysAclModuleMapper.insert(aclModule);
 
     }
 

@@ -15,4 +15,28 @@
       <arg column="operate_ip" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, name, parent_id, level, seq, status, remark, operator, operate_time, operate_ip
+  </sql>
+
+  <select id="getChildAclModuleListByLevel" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_acl_module
+    where level like #{level} || '.%'
+  </select>
+
+  <select id="countByNameAndParentId" resultType="int" parameterType="map">
+    select count(1)
+    from sys_acl_module
+    where name = #{aclModuleName}
+    <if test="parentId != null ">
+      and parent_id = #{parentId}
+    </if>
+    <if test="id != null">
+      and id != #{id}
+    </if>
+  </select>
+
 </mapper>
