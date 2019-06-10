@@ -17,4 +17,29 @@
       <arg column="operate_ip" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, acl_module_id, url, type, status, seq, remark, operator, operate_time,
+    operate_ip
+  </sql>
+
+  <select id="countByNameAndAclModuleId" parameterType="map" resultType="int">
+    select count(1) from sys_acl
+    where acl_module_id =  #{aclModuleId}
+    and name = #{name}
+    <if test="id !=null">
+      and id != #{id}
+    </if>
+  </select>
+  <select id="countByAclModuleId" parameterType="map" resultType="int">
+    select count(1) from sys_acl
+    where acl_module_id = #{aclModuleId}
+  </select>
+  <select id="getPageByAclModuleId" parameterType="map" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from sys_acl
+    where acl_module_id = #{aclModuleId}
+    order by seq, name asc
+    limit #{page.offset},#{page.pageSize}
+  </select>
+
+
 </mapper>
